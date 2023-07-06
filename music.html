@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Music Mood Selector</title>
+</head>
+<body>
+    <h1>Select Your Music Mood</h1>
+    <form method="POST">
+        <select name="mood">
+            {% for index, mood in mood_list %}
+                <option value="{{ index }}">{{ mood }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Play Music">
+    </form>
+</body>
+</html>

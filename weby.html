@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Music Player</title>
+    <style>
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        h1 {
+            color: rgb(107, 207, 224);
+            transition: 0.5s;
+            background-color: white;
+            border: 10px;
+            border: solid;
+            width: 300px;
+            border-width: 8px;
+            border-radius: 15px;
+        }
+        
+        body {
+            background-image: url("background1.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        
+        button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 20px;
+            border-radius: 10px;
+            background-color: rgb(255, 255, 255);
+            border-color: aliceblue;
+        }
+        
+        button:hover {
+            background-color: rgb(255, 174, 0);
+            color: white;
+            transition: 0.2s;
+            border-color: black;
+            border-radius: 20px;
+        }
+        
+        .audio-player {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="imagee">
+        <center>
+            <br><br><br><br>
+            <h1>MUSIC PLAYER </h1><br><br><br><br>
+            <center>
+                <form action="/play_song" method="post">
+                    {% for i, mood in enumerate(mood_list) %}
+                        <button type="submit" name="mood_number" value="{{ i+1 }}">{{ mood }}</button>
+                    {% endfor %}
+                </form>
+            </center>
+            <br><br><br><br>
+        </center>
+    </div>
+</body>
+</html>

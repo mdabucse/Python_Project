@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Song Player</title>
+    <style>
+        /* Add some basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        
+        h1 {
+            text-align: center;
+        }
+        
+        #song-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        #song-list li {
+            margin-bottom: 10px;
+        }
+    </style>
+    <script>
+        // Retrieve the play and stop buttons
+const playButton = document.getElementById('play-button');
+const stopButton = document.getElementById('stop-button');
+
+// Add event listeners to the buttons
+playButton.addEventListener('click', playSong);
+stopButton.addEventListener('click', stopSong);
+
+// Function to play the selected song
+function playSong() {
+    // Prompt the user to enter the song number
+    const moodNumber = prompt('What is your mood?');
+    
+    // Send the mood number to the server and play the song
+    fetch('/play-song', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ moodNumber })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            console.log('Song played successfully.');
+        } else {
+            console.error('Failed to play the song.');
+        }
+    })
+    .catch(error => {
+        console.error('An error occurred:', error);
+    });
+}
+
+// Function to stop the song
+function stopSong() {
+    // Send a request to the server to stop the song
+    fetch('/stop-song', {
+        method: 'POST'
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            console.log('Song stopped successfully.');
+        } else {
+            console.error('Failed to stop the song.');
+        }
+    })
+    .catch(error => {
+        console.error('An error occurred:', error);
+    });
+}
+
+    </script>
+</head>
+<body>
+    <h1>Song Player</h1>
+    
+    <h2>Song Categories</h2>
+    <ul id="song-list">
+        <li>1. Happy</li>
+        <li>2. Depression</li>
+        <li>3. Alone</li>
+        <li>4. Love</li>
+        <li>5. Beast Mood</li>
+    </ul>
+    
+    <div id="player-controls">
+        <button id="play-button">Play</button>
+        <button id="stop-button">Stop</button>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

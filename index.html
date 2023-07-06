@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mood-based Music Player</title>
+</head>
+<body>
+    <h1>Song Categories</h1>
+    <form action="/play_song" method="post">
+        <select name="mood_number">
+            {% for i, mood in enumerate(mood_list) %}
+                <option value="{{ i + 1 }}">{{ mood }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Play Song">
+    </form>
+</body>
+</html>
